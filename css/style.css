@@ -1,0 +1,894 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+} /*меняет ширину блока, чтобы было удобно верстать*/
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+} /*убрали линию обводки у некоторых браузеров*/
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+} /*делает эти элементы блочными*/
+
+html,
+body {
+  height: 100%; /*Обязательно!*/
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+} /*уравнивают поведение шрифтов и элементов для разных браузеров, в т.ч. запрещают увеличение шрифта на телефоне*/
+
+input,
+button,
+textarea {
+  font-family: inherit;
+} /*чтобы наследовали шрифты (поумолчанию в браузерах не наследуются)*/
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+/*a:hover {
+  text-decoration: none;
+}*/
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+} /*устранили недостатки некоторых браузеров*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+/*-------------------------------------------------------*/
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+body {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Roboto Slab";
+}
+
+/*-------------------Header-------------------------*/
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 50;
+  left: 0;
+  top: 0;
+}
+.header::before {
+  /* создаем "плашку" на всю ширину и высоту шапки */
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background-color: blueviolet;*/
+  z-index: 2;
+}
+.header-body {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.header-logo {
+  flex: 0 0;
+  z-index: 3;
+  padding-right: 20px;
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 700;
+}
+.header-logo:hover {
+  color: rgb(221, 223, 98);
+  transition: 0.8s;
+}
+.header-burger {
+  display: none;
+}
+.header__list {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.header__list li {
+  list-style: none;
+  margin-left: 20px;
+}
+.header__link {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.35px;
+}
+.header__link:hover {
+  color: rgb(221, 223, 98);
+  transition: 0.8s;
+}
+@media (max-width: 767px) {
+  body.lock {
+    overflow: hidden;
+  }
+  .header-burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    z-index: 3;
+  }
+  .header-burger::before,
+  .header-burger:after {
+    /*верхняя и нижняя полоски в бургере*/
+    content: "";
+    bottom: 0;
+    background-color: #ffffff;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    transition: all 0.3s ease 0s; /*бургер плавно меняется на крестик*/
+  }
+  .header-burger::before {
+    top: 0;
+  }
+  .header-burger:after {
+    bottom: 0;
+  }
+  .header-burger span {
+    /*средняя полоска в бургере*/
+    background-color: #ffffff;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 9px;
+    transition: all 0.3s ease 0s;
+  }
+  .header-burger.active::before {
+    /*делаем из бургера крестик*/
+    transform: rotate(45deg);
+    top: 9px;
+  }
+  .header-burger.active::after {
+    transform: rotate(-45deg);
+    bottom: 9px;
+  }
+  .header-burger.active span {
+    transform: scale(0);
+  }
+
+  .header-menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(110, 34, 26, 0.8);
+    padding: 70px 10px 20px 10px; /*10 и 20 рх добавили позже*/
+    transition: all 0.3s ease 0s;
+    overflow: auto; /*чтобы в горизонтальном положении телефона помещались все пункты навигационной панели*/
+  }
+  .header-menu.active {
+    top: 0;
+  }
+  .header-body {
+    height: 50px;
+  }
+  .header_logo {
+    flex: 0 0;
+  }
+  .header__list {
+    margin-top: 40px;
+    display: block; /*отключили дисплей:флекс;*/
+  }
+  .header__list li {
+    margin-bottom: 20px;
+  }
+  .header__link {
+    font-size: 24px;
+  }
+}
+
+/*----------------------intro----------------------------*/
+.intro {
+  position: relative;
+}
+
+.ibg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.main-screen__bg img {
+  width: 100%;
+  height: 100vh;
+}
+.ibg img {
+  /*display: none;*/
+}
+.intro-inner {
+  position: absolute;
+  z-index: 10;
+  top: 31%;
+  left: 0;
+  width: 100%;
+  padding-top: 64px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.intro-title {
+  color: #ffffff;
+  font-family: "Roboto Slab";
+  font-size: 20px;
+  font-weight: 400;
+}
+.intro-title h1 {
+  font-family: Montserrat;
+  font-size: 48px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+.intro-buton {
+  display: inline-block;
+  width: 182px;
+  margin: 50px auto 0;
+  padding: 18px 32px;
+  border: 2px solid #ffffff;
+}
+.intro-buton a {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.intro-buton :hover {
+  color: rgb(221, 223, 98);
+  transition: all 0.4s ease 0s;
+}
+/*-----------------service-------------------*/
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.top-title {
+  margin-top: 50px;
+  position: relative;
+  color: #555555;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.top-line {
+  width: 50px;
+  height: 2px;
+  background-color: #555555;
+  margin: 0 auto;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+.top-text {
+  color: #555555;
+  font-family: "Roboto Slab";
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 35px;
+}
+
+.service-content {
+  display: block;
+}
+.service-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 22px;
+}
+.col__img {
+  margin-bottom: 29px;
+}
+.col__img img {
+  width: 90px;
+  height: 90px;
+}
+.col__title {
+  margin-bottom: 24px;
+  color: #555555;
+  font-family: Montserrat;
+  text-transform: uppercase;
+}
+.col__text {
+  color: #555555;
+  margin-bottom: 30px;
+}
+@media (min-width: 767px) {
+  .service-content {
+    display: flex;
+  }
+  .service-col {
+    width: 33.33%;
+  }
+  .top-title {
+    margin-top: 100px;
+  }
+  .col__text {
+    margin-bottom: 70px;
+  }
+}
+/*-------------------about-------------------*/
+.about {
+  background-color: #f8f8f8;
+}
+.about-col {
+  display: block;
+}
+
+.about-col__text {
+  color: #555555;
+  line-height: 24px;
+  width: 100%;
+  margin-bottom: 35px;
+  text-align: justify; /*выравнивание по обеим сторонам*/
+}
+
+/*SLIDER*/
+/* Слайдер */
+.slick-slider {
+  min-width: 0;
+}
+/* Ограничивающая оболочка */
+.slick-list {
+  overflow: hidden;
+}
+/* Лента слайдов */
+.slick-track {
+  display: flex;
+  align-items: flex-start;
+}
+.slider__1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.slider .slick-arrow {
+  /*position: absolute;
+  top: 50%;
+  margin: -30px 0px 0px 0px;
+  z-index: 0;
+  font-size: 0;
+  width: 35px;
+  height: 38px;*/
+}
+/*.slider .slick-arrow.slick-prev {
+  left: 0;
+  background: url("../img/about/arrow-left.png") 0 0 / 100% no-repeat;
+}
+.slider .slick-arrow.slick-next {
+  right: 0;
+  background: url("../img/about/arrow-r-red.png") 0 0 / 100% no-repeat;
+}
+.slider .slick-arrow.slick-disabled {
+  opacity: 0.2;
+}*/
+.slider1__item {
+  text-align: center;
+  margin-bottom: 100px;
+}
+.about__item {
+  position: relative;
+  margin: 0 15px;
+}
+.about__item:hover .item__image img {
+  opacity: 0.4;
+}
+.about__item:hover .item__abtext {
+  opacity: 1;
+}
+.item__image {
+  /*background: url("../img/about/1-1bg.png");*/
+  background-color: #ffffff;
+}
+.item__image img {
+  max-width: 263px;
+  width: 100%;
+  transition: opacity 0.1s linear;
+}
+.item__abtext {
+  position: absolute;
+  top: 78%;
+  left: 30%;
+
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+.item__abtext img {
+  padding: 0 4px;
+  vertical-align: middle; /* выравнивает строчные элементы по вертикали*/
+}
+
+.item__name {
+  color: #555555;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.item__prof {
+  color: #555555;
+  font-size: 13px;
+}
+@media (max-width: 1120px) {
+  .item__image img {
+    width: 200px;
+
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 767px) {
+  .about-col {
+    display: flex;
+    justify-content: space-between;
+  }
+  .about-col__text {
+    width: 48.5%;
+    padding: 0 16px;
+    margin-bottom: 70px;
+  }
+}
+/*----------------------works-----------------------*/
+.works {
+  text-align: center;
+}
+.works .top-text {
+  word-spacing: 20px;
+}
+.works a {
+  color: #555555;
+  font-size: 16px;
+}
+.works a:hover {
+  color: #c0301c;
+}
+.works-block {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+.works__item {
+  position: relative;
+  width: 360px;
+  margin: 10px 0;
+}
+.works__item:hover .works__img img {
+  opacity: 0.3;
+}
+.works__item:hover .item__text {
+  opacity: 1;
+}
+.works__img {
+  background: url("../img/works/bg.png");
+}
+.works__img img {
+  max-width: 360px;
+  width: 100%;
+  transition: opacity 0.1s linear;
+}
+.item__text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  top: 33%;
+  left: 36%;
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}
+
+.item__text h4 {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.item__text h5 {
+  color: #ffffff;
+  font-family: "Roboto Slab";
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+/*-------------------------project-----------------------*/
+.project {
+  background: url("../img/project-fon.png") no-repeat;
+  -moz-background-size: 100%; /* Firefox 3.6+ */
+  -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+  -o-background-size: 100%; /* Opera 9.6+ */
+  background-size: 100%; /* Современные браузеры */
+  text-align: center;
+}
+.project-title {
+  margin-top: 70px;
+  padding-top: 92px;
+  color: #ffffff;
+  font-size: 30px;
+  line-height: 44px;
+  margin-bottom: 46px;
+}
+.project-buton {
+  display: inline-block;
+  border: 2px solid #ffffff;
+  padding: 0 27px;
+  margin-bottom: 100px;
+}
+.project-buton a:hover {
+  color: rgb(221, 223, 98);
+  transition: 0.8s;
+}
+.project-buton a {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 44px;
+  text-transform: uppercase;
+}
+/*--------------------------blog----------------------*/
+.blog-content {
+  margin-top: -38px;
+  margin-bottom: 100px;
+}
+.blog-row {
+  display: block;
+  margin: 35px 0;
+}
+.blog-line {
+  width: 100%;
+  height: 1px;
+  background-color: #dddddd;
+}
+.blog-row__img {
+  display: none;
+}
+.blog-row__img img {
+  max-width: 100%;
+  /*min-height: 100%;*/
+  width: 460px;
+  height: 322px;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+.blog-row__inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.inner__top {
+  display: flex;
+  margin-bottom: 18px;
+}
+.inner__top-date {
+  color: #777777;
+  font-family: Montserrat;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 20px;
+  border: 1px solid #777777;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-right: 25px;
+  height: 76px;
+}
+.inner__top-date span {
+  font-size: 24px;
+  letter-spacing: 2.4px;
+}
+.inner__top-name h3 {
+  color: #c0301c;
+  font-family: Montserrat;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 8px 0;
+}
+.inner__top-name span {
+  color: #c0301c;
+  font-size: 13px;
+  font-style: italic;
+}
+.inner__top-name p {
+  color: #777777;
+  font-size: 13px;
+  font-style: italic;
+}
+.inner__text {
+  color: #555555;
+  line-height: 24px;
+  text-align: justify;
+}
+.inner__text span {
+  color: #c0301c;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+@media (min-width: 767px) {
+  .blog-row {
+    display: flex;
+    margin: 38px 0;
+  }
+  .blog-row__img {
+    display: flex;
+    width: 44%;
+  }
+  .blog-row__inner {
+    width: 56%;
+  }
+  .inner__top-name h3 {
+    margin: 16px 0;
+  }
+}
+/*----------------slider-----------------*/
+.slider__2 {
+  background-color: #f8f8f8;
+  text-align: center;
+
+  padding: 100px 0;
+}
+.reclama {
+  word-spacing: 60px;
+  margin-bottom: 62px;
+  align-items: center;
+}
+/* Слайдер */
+.slick-slider {
+  min-width: 0;
+}
+/* Ограничивающая оболочка */
+.slick-list {
+  overflow: hidden;
+}
+/* Лента слайдов */
+.slider .slick-track {
+  display: flex;
+  align-items: flex-start;
+}
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.slider__item {
+  display: block;
+  width: 90%;
+}
+.slider .slick-dots {
+  position: absolute;
+  bottom: 0;
+  left: 46%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider .slick-dots li {
+  list-style: none;
+  margin: 0px 10px;
+}
+.slider .slick-dots button {
+  font-size: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #dddddd;
+  border-radius: 50%;
+}
+.slider .slick-dots li.slick-active button {
+  /*background-color: transparent;*/
+  background-color: #c0301c;
+  border: 1px solid #c0301c;
+}
+.slider p {
+  color: #555555;
+  font-size: 18px;
+  line-height: 30px;
+  font-style: italic;
+}
+.slider span {
+  font-size: 20px;
+  line-height: 100px;
+  font-style: normal;
+}
+/*------------------forms-----------------------------*/
+.forms-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+.c-item {
+  display: flex;
+  width: 235px;
+  margin-bottom: 33px;
+}
+.c-img {
+  margin-right: 14px;
+}
+.contacts-title {
+  color: #555555;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.contacts-text {
+  color: #555555;
+  font-size: 12px;
+  line-height: 20px;
+}
+.f-forms input,
+textarea {
+  color: #555555;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  line-height: 40px;
+  margin-left: 17px;
+  background-color: #fff;
+}
+#user:focus,
+#user3:focus,
+#user4:focus {
+  border: 1.5px solid #c0301c; /* Параметры рамки */
+}
+.f-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+#user {
+  margin: 0 14px 20px 14px;
+  display: inline-block;
+  width: 350px;
+  height: 44px;
+  border: 1px solid #555555;
+  padding: 10px 15px;
+}
+#user3 {
+  margin: 0 14px 20px 14px;
+  display: inline-block;
+  width: 730px;
+  height: 104px;
+  border: 1px solid #555555;
+  padding: 10px 15px;
+}
+.f-row4 {
+  display: flex;
+}
+#user4 {
+  display: inline-block;
+  width: 170px;
+  height: 44px;
+  border: 1px solid #555555;
+}
+.f-row4__text p {
+  margin: 16px 24px;
+  display: inline-block;
+  color: #555555;
+  font-size: 12px;
+}
+.f-row4 span {
+  color: #c0301c;
+}
+
+@media (max-width: 1000px) {
+  .f-row {
+    display: block;
+  }
+  #user,
+  #user4 {
+    margin-left: 0;
+  }
+  #user3 {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px 0;
+  }
+}
+@media (max-width: 767px) {
+  .forms-content {
+    display: block;
+  }
+  #user,
+  #user4 {
+    margin-left: 0;
+  }
+}
+@media (max-width: 400px) {
+  #user,
+  #user3 {
+    margin: 0 0 20px 0;
+  }
+  #user {
+    width: 100%;
+    height: auto;
+  }
+}
+/*-------------------footer--------------------------*/
+.footer {
+  background-color: #c0301c;
+  text-align: center;
+  padding: 100px 0;
+}
+.footer-line {
+  width: 50px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 30px auto;
+}
+.footer-text {
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+}
