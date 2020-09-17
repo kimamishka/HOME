@@ -153,6 +153,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.35px;
+  transition: color 0.2s linear; /*цвет при наведении меняется плавно */
 }
 .header__link:hover {
   color: rgb(221, 223, 98);
@@ -256,9 +257,7 @@ body {
   width: 100%;
   height: 100vh;
 }
-.ibg img {
-  /*display: none;*/
-}
+
 .intro-inner {
   position: absolute;
   z-index: 10;
@@ -395,7 +394,7 @@ body {
 }
 
 /*SLIDER*/
-/* Слайдер */
+
 .slick-slider {
   min-width: 0;
 }
@@ -409,30 +408,28 @@ body {
   align-items: flex-start;
 }
 .slider__1 {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.slider .slick-arrow {
-  /*position: absolute;
-  top: 50%;
-  margin: -30px 0px 0px 0px;
-  z-index: 0;
-  font-size: 0;
-  width: 35px;
+
+.prev {
+  left: 15px;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  cursor: pointer;
+  /*width: 35px;
   height: 38px;*/
 }
-/*.slider .slick-arrow.slick-prev {
-  left: 0;
-  background: url("../img/about/arrow-left.png") 0 0 / 100% no-repeat;
+.next {
+  right: 15px;
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  cursor: pointer;
 }
-.slider .slick-arrow.slick-next {
-  right: 0;
-  background: url("../img/about/arrow-r-red.png") 0 0 / 100% no-repeat;
-}
-.slider .slick-arrow.slick-disabled {
-  opacity: 0.2;
-}*/
 .slider1__item {
   text-align: center;
   margin-bottom: 100px;

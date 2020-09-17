@@ -32,8 +32,11 @@ $(document).ready(function () {
    });
 });
 
+// CHANGE ARROWS
 $(document).ready(function () {
    $('.slider__1').slick({
+      prevArrow: "<img src='img/about/arrow-left.png' class='prev' alt='1'>",
+      nextArrow: "<img src='img/about/arrow-r-red.png' class='next' alt='2'>",
       arrows: true,
       dots: false,
       slidesToShow: 4,
