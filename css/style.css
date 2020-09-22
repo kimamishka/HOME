@@ -794,7 +794,7 @@ textarea {
   margin-left: 17px;
   background-color: #fff;
 }
-#user:focus,
+.user:focus,
 #user3:focus,
 #user4:focus {
   border: 1.5px solid #c0301c; /* Параметры рамки */
@@ -803,7 +803,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
 }
-#user {
+.user {
   margin: 0 14px 20px 14px;
   display: inline-block;
   width: 350px;
@@ -842,7 +842,7 @@ textarea {
   .f-row {
     display: block;
   }
-  #user,
+  .user,
   #user4 {
     margin-left: 0;
   }
@@ -857,17 +857,17 @@ textarea {
   .forms-content {
     display: block;
   }
-  #user,
+  .user,
   #user4 {
     margin-left: 0;
   }
 }
 @media (max-width: 400px) {
-  #user,
+  .user,
   #user3 {
     margin: 0 0 20px 0;
   }
-  #user {
+  .user {
     width: 100%;
     height: auto;
   }
