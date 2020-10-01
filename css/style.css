@@ -253,18 +253,22 @@ body {
   background-size: cover;
   background-position: center;
 }
+.main-screen__bg {
+  width: calc(1600 / 770 * 100vh);
+  height: 100vh;
+  margin: 0 auto;
+}
 .main-screen__bg img {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .intro-inner {
   position: absolute;
   z-index: 10;
-  top: 31%;
+  top: 33%;
   left: 0;
   width: 100%;
-  padding-top: 64px;
 
   display: flex;
   flex-direction: column;
@@ -274,7 +278,7 @@ body {
 .intro-title {
   color: #ffffff;
   font-family: "Roboto Slab";
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
 }
 .intro-title h1 {
@@ -300,8 +304,13 @@ body {
   text-transform: uppercase;
 }
 .intro-buton :hover {
-  color: rgb(221, 223, 98);
+  color: rgb(99, 233, 22);
   transition: all 0.4s ease 0s;
+}
+@media (max-width: 600px) {
+  .intro-inner {
+    top: 20%;
+  }
 }
 /*-----------------service-------------------*/
 .top {
@@ -415,19 +424,17 @@ body {
 }
 
 .prev {
-  left: 15px;
   position: absolute;
   z-index: 1;
   top: 25%;
+  left: 0px;
   cursor: pointer;
-  /*width: 35px;
-  height: 38px;*/
 }
 .next {
-  right: 15px;
   position: absolute;
   z-index: 1;
   top: 25%;
+  right: 0px;
   cursor: pointer;
 }
 .slider1__item {
@@ -445,7 +452,6 @@ body {
   opacity: 1;
 }
 .item__image {
-  /*background: url("../img/about/1-1bg.png");*/
   background-color: #ffffff;
 }
 .item__image img {
@@ -521,6 +527,7 @@ body {
   position: relative;
   width: 360px;
   margin: 10px 0;
+  cursor: pointer;
 }
 .works__item:hover .works__img img {
   opacity: 0.3;
@@ -812,7 +819,7 @@ textarea {
   padding: 10px 15px;
 }
 #user3 {
-  margin: 0 14px 20px 14px;
+  margin: 0 14px 20px 17px;
   display: inline-block;
   width: 730px;
   height: 104px;
