@@ -648,14 +648,18 @@ body {
     }
   }
   @media (max-width: 480px) {
+    .project {
+      background-size: 120%;
+    }
+
     .project-title {
-      padding-top: 8px;
+      padding-top: 12px;
       font-size: 12px;
       line-height: 14px;
       margin-bottom: 8px;
     }
     .project-buton {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     .project-buton a {
       font-size: 14px;
