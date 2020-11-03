@@ -1,14 +1,12 @@
 //БУРГЕР
 $(document).ready(function () {
    $(".header-burger").click(function (event) {
-      $(".header-burger, .header-menu").toggleClass("active");
-      $(".header-menu").css("background-color", "rgba(110, 34, 6, 0.8)");
-      $(".header__link").css("font-size", "24px");
+      $(".header-menu").toggleClass("active");
+      $(".header-menu").css("top", "0");
    });
-   $(".header__link").click(function (event) {
-      $(".header-menu").css("background-color", "rgba(110, 34, 6, 0)");
-      $(".header__link").css("font-size", "0");
-   });
+});
+$(".header__link").click(function (event) {
+   $(".header-menu").css("top", "-100%");
 });
 
 //СЛАЙДЕР
