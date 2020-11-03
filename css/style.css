@@ -174,7 +174,6 @@ body {
   .header-burger:after {
     /*верхняя и нижняя полоски в бургере*/
     content: "";
-    bottom: 0;
     background-color: #ffffff;
     position: absolute;
     width: 100%;
@@ -219,11 +218,11 @@ body {
     height: 100%;
     background-color: rgba(110, 34, 26, 0.8);
     padding: 70px 10px 20px 10px; /*10 и 20 рх добавили позже*/
-    transition: all 0.3s ease 0s;
+    transition: all 0.2s ease 0s;
     overflow: auto; /*чтобы в горизонтальном положении телефона помещались все пункты навигационной панели*/
   }
   .header-menu.active {
-    top: 0;
+    top: 0px;
   }
   .header-body {
     height: 50px;

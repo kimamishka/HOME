@@ -1,8 +1,13 @@
 //БУРГЕР
 $(document).ready(function () {
    $(".header-burger").click(function (event) {
-      $(".header-burger, .header-menu").toggleClass("active"); /*при нажатии меняются виды указанных классов (полоски бургера меняем на крестик, меню выкатывается из под шапки)*/
-      $("body").toggleClass("lock"); /*чтобы при открытом меню бургера текст под меню случайно не скролился, оставался на том же месте, где мы зашли в бургер*/
+      $(".header-burger, .header-menu").toggleClass("active");
+      $(".header-menu").css("background-color", "rgba(110, 34, 6, 0.8)");
+      $(".header__link").css("font-size", "24px");
+   });
+   $(".header__link").click(function (event) {
+      $(".header-menu").css("background-color", "rgba(110, 34, 6, 0)");
+      $(".header__link").css("font-size", "0");
    });
 });
 
